@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (addOperand("-")) equalClicked = false;
                 break;
             case R.id.button_multiplication:
-                if (addOperand("x")) equalClicked = false;
+                if (addOperand("*")) equalClicked = false;
                 break;
             case R.id.button_division:
                 if (addOperand("\u00F7")) equalClicked = false;
@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openParenthesis++;
             } else
             {
-                textViewInputNumbers.setText(textViewInputNumbers.getText() + "x(");
+                textViewInputNumbers.setText(textViewInputNumbers.getText() + "*(");
                 done = true;
                 dotUsed = false;
                 openParenthesis++;
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 done = true;
             } else if (lastCharacterState == IS_CLOSE_PARENTHESIS || lastCharacter.equals("%"))
             {
-                textViewInputNumbers.setText(textViewInputNumbers.getText() + "x" + number);
+                textViewInputNumbers.setText(textViewInputNumbers.getText() + "*" + number);
                 done = true;
             } else if (lastCharacterState == IS_NUMBER || lastCharacterState == IS_OPERAND || lastCharacterState == IS_DOT)
             {
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 saveLastExpression(input);
             }
-            result = scriptEngine.eval(temp.replaceAll("%", "/100").replaceAll("x", "*").replaceAll("[^\\x00-\\x7F]", "/")).toString();
+            result = scriptEngine.eval(temp.replaceAll("%", "/100").replaceAll("[^\\x00-\\x7F]", "/")).toString();
             BigDecimal decimal = new BigDecimal(result);
             result = decimal.setScale(8, BigDecimal.ROUND_HALF_UP).toPlainString();
             equalClicked = true;
@@ -487,7 +487,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
         }
 
-        if ((lastCharacter.equals("+") || lastCharacter.equals("-") || lastCharacter.equals("x") || lastCharacter.equals("\u00F7") || lastCharacter.equals("%")))
+        if ((lastCharacter.equals("+") || lastCharacter.equals("-") || lastCharacter.equals("*") || lastCharacter.equals("\u00F7") || lastCharacter.equals("%")))
             return IS_OPERAND;
 
         if (lastCharacter.equals("("))
